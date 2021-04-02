@@ -39,6 +39,7 @@ class PlayerRPG:
         if damage > 0:
             self.life -= damage
 
+
 class RPGType(Enum):
     warrior = 1
     mage = 2
