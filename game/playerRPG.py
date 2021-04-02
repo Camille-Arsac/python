@@ -1,7 +1,6 @@
 from enum import Enum
 
 from attack import Attack
-from utils import print_list
 from potion import PotionEffect
 
 
@@ -22,23 +21,22 @@ class PlayerRPG:
             self.attack.append(Attack("Eclair", 3, 50))
             self.attack.append(Attack("Boule de feu", 8, 20))
 
-    def choose_attack(self):
-        print_list(self.attack)
-        print("Choississez une attaque : ")
-        user_choice = int(input())
-        while user_choice < 0 or user_choice >= len(self.attack):
-            user_choice = int(input())
-        return self.attack[user_choice]
+    def __str__(self):
+        return "Vous avez " + str(self.life) + " points de vie"
 
-    def drink_potion(self, id_inventory):
-        if self.inventory[id_inventory].effect == PotionEffect.heal:
-            self.life += self.inventory[id_inventory].power
-        elif self.inventory[id_inventory].effect == PotionEffect.strength:
-            self.life += self.inventory[id_inventory].power
-        elif self.inventory[id_inventory].effect == PotionEffect.defence:
-            self.defence += self.inventory[id_inventory].power
-        self.inventory.pop(id_inventory)
+    def drink_potion(self, potion):
+        if potion.effect == PotionEffect.heal:
+            self.life += self.potion.power
+        elif potion.effect == PotionEffect.strength:
+            self.life += potion.power
+        elif potion.effect == PotionEffect.defence:
+            self.defence += potion.power
+        self.inventory.remove(potion)
 
+    def damage(self, damage):
+        damage -= self.defence
+        if damage > 0:
+            self.life -= damage
 
 class RPGType(Enum):
     warrior = 1
