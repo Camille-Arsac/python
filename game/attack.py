@@ -11,4 +11,4 @@ class Attack:
         return self.name
 
     def hit(self):
-        return randint(0, 110) < self.lucky
+        return randint(0, 10) < self.lucky
