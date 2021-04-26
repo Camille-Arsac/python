@@ -7,6 +7,9 @@ def combat(player, monster):
     print(monster)
 
     while player.life > 0 and monster.life > 0:
+        print(player)
+        print("VS")
+        print(monster)
         print("Que voulez vous faire ?")
         print("1 : Attaquer")
         print("2 : Boire une potion")
